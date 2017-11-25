@@ -14,3 +14,7 @@
     <button mat-fab color="primary" (click)="takePhoto()">Primary</button>
   </div>
 </div>
+
+<li *ngFor="let humid of humidData">
+  <ul>{{humid | json}}</ul>
+</li>

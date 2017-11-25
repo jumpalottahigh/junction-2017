@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http/';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -10,6 +11,7 @@ import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { MatInputModule, MatButtonModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { SmartStoreService } from './services/smart-store.service';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
@@ -26,6 +29,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [
+    SmartStoreService
   ],
   bootstrap: [AppComponent]
 })
