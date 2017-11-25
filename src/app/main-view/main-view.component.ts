@@ -13,7 +13,10 @@ export class MainViewComponent implements OnInit {
   }
 
   public addItem() {
-    console.log(this)
+    console.log('Saves to firebase the entry.')
   }
-
+  
+  public takePhoto() {
+    console.log('This takes a photo, stores to Firebase and executes cloud vision using cloud functions')
+  }
 }
