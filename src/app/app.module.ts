@@ -16,11 +16,23 @@ import { SmartStoreService } from './services/smart-store.service';
 import { OldStuffService } from './services/old-stuff.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SocketIoModule, SocketIoConfig, Socket } from 'ng-socket-io';
+import { RouterModule, Routes } from '@angular/router';
+import { AddItemComponent } from './add-item/add-item.component';
+import { StatesComponent } from './states/states.component';
+
+const appRoutes: Routes = [
+  { path: '', component: MainViewComponent },
+  { path: 'add', component: AddItemComponent },
+  { path: 'states', component: StatesComponent },
+  { path: '**', component: MainViewComponent }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     MainViewComponent,
+    AddItemComponent,
+    StatesComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +47,11 @@ import { SocketIoModule, SocketIoConfig, Socket } from 'ng-socket-io';
     MatListModule,
     MatCardModule,
     FormsModule,
-    SocketIoModule.forRoot({url: 'http://balabanovo.westeurope.cloudapp.azure.com'})
+    SocketIoModule.forRoot({url: 'http://balabanovo.westeurope.cloudapp.azure.com'}),
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [
     SmartStoreService,
