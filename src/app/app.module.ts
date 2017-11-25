@@ -26,8 +26,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 const appRoutes: Routes = [
   { path: '', component: MainViewComponent },
   { path: 'add', component: AddItemComponent },
-  { path: 'states', component: StatesComponent },
-  // { path: '**', component: MainViewComponent }
+  { path: '**', component: MainViewComponent }
 ];
 
 @NgModule({
