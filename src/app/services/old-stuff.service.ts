@@ -4,10 +4,17 @@ import { AngularFirestore } from 'angularfire2/firestore';
 
 @Injectable()
 export class OldStuffService {
+  private items;
 
-  constructor(private db: AngularFirestore) {}
+  constructor(private db: AngularFirestore) {
+    this.items = this.db.collection('items').valueChanges();
+  }
 
-  public check() {
+  public getItems(): Observable<any> {
+    return this.items;
+  }
+
+  public checkOldItems(): Observable<any> {
 
     // TODO:
     // This is how to use the Helvar API
@@ -21,16 +28,10 @@ export class OldStuffService {
     // 'Content-Type', 'application/json'
     // 'Accept', 'application/json'
 
-    return new Observable(observer => {
-      this.db.collection('items').valueChanges()
-      .subscribe((items: any) => {
-        const old = [];
-        items.forEach(item => {
-          if (item.depositeDate > (new Date().setFullYear(new Date().getFullYear() - 1))) {
-            old.push(item);
-          }
-        });
-        observer.next(old);
+    return this.items.map((items) => {
+      return items.filter(item => {
+        console.log('item', item, item.depositDate > (new Date().setFullYear(new Date().getFullYear() - 1)));
+        return item.depositDate < (new Date().setFullYear(new Date().getFullYear() - 1));
       });
     });
   }

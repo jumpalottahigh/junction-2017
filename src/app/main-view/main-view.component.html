@@ -1,5 +1,5 @@
 <!-- Old stuff notification -->
-<div *ngIf="oldStuff" class="poptext m-t" fxLayout="column" fxLayoutAlign="center center">
+<div *ngIf="oldStuff && oldStuff.length" class="poptext m-t" fxLayout="column" fxLayoutAlign="center center">
   <h2>You have some items in your storage for more then a year!</h2>
   <mat-list fxLayout="column" fxLayoutAlign="start center">
     <mat-list-item *ngFor="let item of oldStuff">{{item?.name}}</mat-list-item>

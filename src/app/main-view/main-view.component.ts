@@ -14,14 +14,30 @@ import { filter } from 'rxjs/operator/filter';
 export class MainViewComponent implements OnInit {
   public humidData = null;
   public oldStuff = null;
+  public allItems = null;
 
   @ViewChild('fileInput') fileInput;
 
   constructor(private db: AngularFirestore, private store: SmartStoreService, private old: OldStuffService, private uploadSrv: UploadService) { }
 
   ngOnInit() {
-    this.old.check().subscribe(oldStuff => {
-      this.oldStuff = oldStuff;
+    this.getStuff();
+  }
+
+  getStuff() {
+    console.log('getStuff');
+    this.old.checkOldItems().subscribe(oldStuff => {
+      console.log('oldStuff', oldStuff);
+      if (oldStuff.length) {
+        this.oldStuff = oldStuff;
+      }
+    });
+
+    this.old.getItems().subscribe(allItems => {
+      console.log('allitems', allItems);
+      if (allItems.length) {
+        this.allItems = allItems;
+      }
     });
 
     this.store.makeRequest().subscribe((data) => {
