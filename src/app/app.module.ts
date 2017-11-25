@@ -9,13 +9,11 @@ import { MainViewComponent } from './main-view/main-view.component';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { MatInputModule, MatButtonModule } from '@angular/material';
+import { MatInputModule, MatButtonModule, MatListModule, MatCardModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { SmartStoreService } from './services/smart-store.service';
 import { OldStuffService } from './services/old-stuff.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
-import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -32,7 +30,8 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     FormsModule,
     FlexLayoutModule,
-    MatListModule
+    MatListModule,
+    MatCardModule
   ],
   providers: [
     SmartStoreService,
