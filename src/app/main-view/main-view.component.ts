@@ -1,3 +1,4 @@
+import { SmartStoreService } from './../services/smart-store.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,13 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: SmartStoreService) { }
 
   ngOnInit() {
   }
 
   public addItem() {
     console.log(this)
+    this.store.makeRequest().subscribe(x => console.log(x));
   }
 
 }
