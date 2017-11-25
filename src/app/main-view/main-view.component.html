@@ -1,26 +1,32 @@
 <!-- Add item to storage view -->
-<div>
+<div fxLayout="column" fxLayoutAlign="center center">
   <h2>Add items to storage</h2>
-  <mat-form-field>
-    <input matInput placeholder="id" [(ngModel)]="id">
-  </mat-form-field>
   <mat-form-field>
     <input matInput placeholder="name" [(ngModel)]="name">
   </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="timestamp" [(ngModel)]="depositeDate">
-  </mat-form-field>
   <button mat-raised-button (click)="addItem()">Add items</button>
+  <div *ngIf="oldStuff" class="poptext m-t" fxLayout="column" fxLayoutAlign="center center">
+    <h2>You have some items in your storage for more then a year!</h2>
+    <mat-list fxLayout="column" fxLayoutAlign="start center">
+      <mat-list-item *ngFor="let item of oldStuff">{{item?.name}}</mat-list-item>
+    </mat-list>
+  </div>
 
   <div class="button-row">
     <button mat-fab color="primary" (click)="takePhoto()">Scan</button>
 
-    <input #fileInput class="hidden-input" type="file" accept="image/*" capture="camera" />
+    <input #fileInput class="hidden-input" type="file" accept="image/*" capture="camera" (change)="doUpload($event)"/>
   </div>
+
+  <div *ngIf="currentUpload">
+    <progress class="progress is-success" min=1 max=100 value="{{ currentUpload?.progress }}"></progress>
+    Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+  </div>
+
 </div>
 
 <!-- Storage room state view -->
-<div>
+<div fxLayout="column" fxLayoutAlign="center center">
   <h2>Storage room state (last 24 hours)</h2>
   <mat-card *ngFor="let humid of humidData">
     <mat-card-title class="row">
@@ -35,4 +41,3 @@
     </mat-card-content>
   </mat-card>
 </div>
-

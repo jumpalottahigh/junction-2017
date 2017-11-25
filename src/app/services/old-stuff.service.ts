@@ -8,12 +8,16 @@ export class OldStuffService {
   constructor(private db: AngularFirestore) {}
 
   public check() {
-    this.db.collection('items').valueChanges()
-    .subscribe((items: any) => {
-      items.forEach(item => {
-        if (item.depositeDate > (new Date().setFullYear(new Date().getFullYear() - 1))) {
-          console.log('boom');
-        }
+    return new Observable(observer => {
+      this.db.collection('items').valueChanges()
+      .subscribe((items: any) => {
+        const old = [];
+        items.forEach(item => {
+          if (item.depositeDate > (new Date().setFullYear(new Date().getFullYear() - 1))) {
+            old.push(item);
+          }
+        });
+        observer.next(old);
       });
     });
   }

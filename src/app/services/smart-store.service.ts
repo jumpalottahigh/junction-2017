@@ -93,9 +93,4 @@ export class SmartStoreService {
       .filter(x => x.macAddress === '00:16:25:12:16:4F' && x.orderedRecords[0].epc[0] !== '*')
       .map(x => x.orderedRecords);
     }
-
-
-
-
-
 }

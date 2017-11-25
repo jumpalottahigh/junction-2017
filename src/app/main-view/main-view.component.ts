@@ -1,4 +1,6 @@
-import { SmartStoreService } from './../services/smart-store.service';
+import { SmartStoreService } from '../services/smart-store.service';
+import { UploadService } from '../services/upload.service';
+import { Upload } from '../services/upload';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { OldStuffService } from '../services/old-stuff.service';
@@ -14,15 +16,19 @@ export class MainViewComponent implements OnInit {
   public id = '';
   public name = '';
   public depositeDate = '';
+  public selectedFiles: FileList | null;
+  public currentUpload: Upload;
 
-  constructor(private db: AngularFirestore, private store: SmartStoreService, private old: OldStuffService) { }
+  public oldStuff = null;
 
   @ViewChild('fileInput') fileInput;
 
+  constructor(private db: AngularFirestore, private store: SmartStoreService, private old: OldStuffService, private uploadSrv: UploadService) { }
 
   ngOnInit() {
-
-    this.old.check();
+    this.old.check().subscribe(oldStuff => {
+      this.oldStuff = oldStuff;
+    });
 
     this.db.collection('items').valueChanges()
     .subscribe(value => {
@@ -53,6 +59,27 @@ export class MainViewComponent implements OnInit {
   public takePhoto() {
     console.log('This takes a photo, stores to Firebase and executes cloud vision using cloud functions');
     this.fileInput.nativeElement.click();
-    // TODO: upload photo to firebase storage
+  }
+
+  public doUpload(event: any) {
+    this.selectedFiles = (event.target as HTMLInputElement).files;
+    const file = this.selectedFiles;
+    if (file && file.length === 1) {
+      this.currentUpload = new Upload(file.item(0));
+      this.uploadSrv.pushUpload(this.currentUpload)
+        .subscribe(
+        (upload) => {
+          console.log('upload finished!');
+          setTimeout(() => {
+            this.fileInput.nativeElement.value = '';
+            this.currentUpload = null;
+          }, 2000);
+        },
+        (error) => {
+          console.error('upload error', error);
+        });
+    } else {
+      console.error('No file found!');
+    }
   }
 }
