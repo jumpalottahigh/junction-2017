@@ -13,18 +13,18 @@ export class SmartStoreService {
   makeRequest(): Observable<any> {
     let query = {
       query: `
-      query {
-      building(id: "Junction2017") {
-        airquality(for: "24h", groupby: "1h") {
-          co2
-          humidity
-          light
-          motion
-          temperature
-          vOC
-          timestamp
+        query {
+        building(id: "Junction2017") {
+          airquality(for: "24h", groupby: "1h") {
+            co2
+            humidity
+            light
+            motion
+            temperature
+            vOC
+            timestamp
+          }
         }
-      }
       }`
     };
 

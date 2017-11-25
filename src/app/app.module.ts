@@ -9,10 +9,11 @@ import { MainViewComponent } from './main-view/main-view.component';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { MatInputModule, MatButtonModule } from '@angular/material';
+import { MatInputModule, MatButtonModule, MatListModule, MatCardModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 
 import { SmartStoreService } from './services/smart-store.service';
+import { OldStuffService } from './services/old-stuff.service';
 import { SocketIoModule, SocketIoConfig, Socket } from 'ng-socket-io';
 
 @NgModule({
@@ -28,11 +29,14 @@ import { SocketIoModule, SocketIoConfig, Socket } from 'ng-socket-io';
     AngularFirestoreModule,
     MatInputModule,
     MatButtonModule,
+    MatListModule,
+    MatCardModule,    
     FormsModule,
     SocketIoModule.forRoot({url: 'http://balabanovo.westeurope.cloudapp.azure.com'})
   ],
   providers: [
-    SmartStoreService
+    SmartStoreService,
+    OldStuffService
   ],
   bootstrap: [AppComponent]
 })
