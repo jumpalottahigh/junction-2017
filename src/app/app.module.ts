@@ -20,22 +20,19 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SocketIoModule, SocketIoConfig, Socket } from 'ng-socket-io';
 import { RouterModule, Routes } from '@angular/router';
 import { AddItemComponent } from './add-item/add-item.component';
-import { StatesComponent } from './states/states.component';
 import { MatTabsModule } from '@angular/material/tabs';
 
 const appRoutes: Routes = [
   { path: '', component: MainViewComponent },
   { path: 'add', component: AddItemComponent },
-  { path: 'states', component: StatesComponent },
-  // { path: '**', component: MainViewComponent }
+  { path: '**', component: MainViewComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     MainViewComponent,
-    AddItemComponent,
-    StatesComponent
+    AddItemComponent
   ],
   imports: [
     BrowserModule,

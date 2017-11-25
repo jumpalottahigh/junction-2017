@@ -13,12 +13,6 @@ import { filter } from 'rxjs/operator/filter';
 })
 export class MainViewComponent implements OnInit {
   public humidData = null;
-  public id = '';
-  public name = '';
-  public depositeDate = '';
-  public selectedFiles: FileList | null;
-  public currentUpload: Upload;
-
   public oldStuff = null;
 
   @ViewChild('fileInput') fileInput;
@@ -28,11 +22,6 @@ export class MainViewComponent implements OnInit {
   ngOnInit() {
     this.old.check().subscribe(oldStuff => {
       this.oldStuff = oldStuff;
-    });
-
-    this.db.collection('items').valueChanges()
-    .subscribe(value => {
-      console.log(value);
     });
 
     this.store.makeRequest().subscribe((data) => {
@@ -45,41 +34,5 @@ export class MainViewComponent implements OnInit {
     // .subscribe(x => console.log(x));
 
     this.store.getMQTTEvents().subscribe(x => console.log(x));
-  }
-
-  public addItem(item: any) {
-    this.db.collection('items').add(
-    {
-      id: this.id,
-      name: this.name,
-      depositeDate: this.depositeDate
-    });
-  }
-
-  public takePhoto() {
-    console.log('This takes a photo, stores to Firebase and executes cloud vision using cloud functions');
-    this.fileInput.nativeElement.click();
-  }
-
-  public doUpload(event: any) {
-    this.selectedFiles = (event.target as HTMLInputElement).files;
-    const file = this.selectedFiles;
-    if (file && file.length === 1) {
-      this.currentUpload = new Upload(file.item(0));
-      this.uploadSrv.pushUpload(this.currentUpload)
-        .subscribe(
-        (upload) => {
-          console.log('upload finished!');
-          setTimeout(() => {
-            this.fileInput.nativeElement.value = '';
-            this.currentUpload = null;
-          }, 2000);
-        },
-        (error) => {
-          console.error('upload error', error);
-        });
-    } else {
-      console.error('No file found!');
-    }
   }
 }
