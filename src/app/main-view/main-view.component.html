@@ -1,7 +1,16 @@
 <div>
   <mat-form-field>
-    <input matInput placeholder="Enter text">
+    <input matInput placeholder="id" [(ngModel)]="id">
   </mat-form-field>
-  
-  <button mat-raised-button (click)="addItem()">Click me</button>
+  <mat-form-field>
+    <input matInput placeholder="name" [(ngModel)]="name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="timestamp" [(ngModel)]="depositeDate">
+  </mat-form-field>
+  <button mat-raised-button (click)="addItem()">Add items</button>
+
+  <div class="button-row">
+    <button mat-fab color="primary" (click)="takePhoto()">Primary</button>
+  </div>
 </div>

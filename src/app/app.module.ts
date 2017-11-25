@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { MatInputModule, MatButtonModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http/src/module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http/src/module';
     AngularFirestoreModule,
     MatInputModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     SmartStoreService
