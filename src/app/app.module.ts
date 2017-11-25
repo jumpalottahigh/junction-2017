@@ -21,12 +21,13 @@ import { SocketIoModule, SocketIoConfig, Socket } from 'ng-socket-io';
 import { RouterModule, Routes } from '@angular/router';
 import { AddItemComponent } from './add-item/add-item.component';
 import { StatesComponent } from './states/states.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const appRoutes: Routes = [
   { path: '', component: MainViewComponent },
   { path: 'add', component: AddItemComponent },
   { path: 'states', component: StatesComponent },
-  { path: '**', component: MainViewComponent }
+  // { path: '**', component: MainViewComponent }
 ];
 
 @NgModule({
@@ -49,11 +50,12 @@ const appRoutes: Routes = [
     FlexLayoutModule,
     MatListModule,
     MatCardModule,
+    MatTabsModule,
     FormsModule,
     SocketIoModule.forRoot({url: 'http://balabanovo.westeurope.cloudapp.azure.com'}),
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: false } // <-- debugging purposes only
     )
   ],
   providers: [
