@@ -21,14 +21,6 @@ export class MainViewComponent implements OnInit {
     });
   }
 
-<<<<<<< HEAD
-  public addItem() {
-    console.log('Saves to firebase the entry.')
-  }
-  
-  public takePhoto() {
-    console.log('This takes a photo, stores to Firebase and executes cloud vision using cloud functions')
-=======
   public addItem(item: any) {
     this.db.collection('items').add(
     {
@@ -36,6 +28,9 @@ export class MainViewComponent implements OnInit {
       name: this.name,
       depositeDate: this.depositeDate
     });
->>>>>>> e7d488930410c3f709a2c94a13ff66afa7391a5d
+  }
+
+  public takePhoto() {
+    console.log('This takes a photo, stores to Firebase and executes cloud vision using cloud functions');
   }
 }
