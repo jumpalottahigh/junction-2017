@@ -16,17 +16,18 @@ export class SmartStoreService {
     let query = {
       query: `
       query {
-        building(id: "Junction2017") {
-        airquality {
+      building(id: "Junction2017") {
+        airquality(for: "24h", groupby: "1h") {
           co2
           humidity
           light
           motion
           temperature
+          vOC
           timestamp
         }
       }
-    }`
+      }`
     };
 
 
