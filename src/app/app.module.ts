@@ -15,6 +15,8 @@ import { SmartStoreService } from './services/smart-store.service';
 import { OldStuffService } from './services/old-stuff.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { MatListModule } from '@angular/material/list';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatInputModule,
     MatButtonModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatListModule
   ],
   providers: [
     SmartStoreService,
