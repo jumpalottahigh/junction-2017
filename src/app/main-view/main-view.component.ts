@@ -12,4 +12,8 @@ export class MainViewComponent implements OnInit {
   ngOnInit() {
   }
 
+  public addItem() {
+    console.log(this)
+  }
+
 }
