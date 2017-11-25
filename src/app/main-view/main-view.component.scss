@@ -1,3 +1,15 @@
+mat-card {
+  margin-bottom: 1rem;
+  min-width: 80%;
+}
+
+button[mat-fab] {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 2;
+}
+
 .hidden-input {
     visibility: hidden;
 }
@@ -6,6 +18,3 @@
   background-color: azure;
 }
 
-mat-card {
-  margin-bottom: 1rem;
-}

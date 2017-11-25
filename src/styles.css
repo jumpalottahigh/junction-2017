@@ -1,2 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+  font-family: "Roboto";
+}
+
+.m-t {
+  margin-top: 2rem;
+}
+
+.m-b {
+  margin-bottom: 2rem;
+}
+
+.m-l {
+  margin-left: 2rem;
+}
+
+.m-r {
+  margin-right: 2rem;
+}
