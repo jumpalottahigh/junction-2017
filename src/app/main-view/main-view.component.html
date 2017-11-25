@@ -21,8 +21,14 @@
   <div class="button-row">
     <button mat-fab color="primary" (click)="takePhoto()">Scan</button>
 
-    <input #fileInput class="hidden-input" type="file" accept="image/*" capture="camera" />
+    <input #fileInput class="hidden-input" type="file" accept="image/*" capture="camera" (change)="doUpload($event)"/>
   </div>
+
+  <div *ngIf="currentUpload">
+    <progress class="progress is-success" min=1 max=100 value="{{ currentUpload?.progress }}"></progress>
+    Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+  </div>
+
 </div>
 
 <!-- Storage room state view -->

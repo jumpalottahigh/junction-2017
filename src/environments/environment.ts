@@ -10,7 +10,7 @@ export const environment = {
     authDomain: '<your-project-authdomain>',
     databaseURL: 'https://junction-2017.firebaseio.com/',
     projectId: 'junction-2017',
-    storageBucket: '<your-storage-bucket>',
+    storageBucket: 'junction-2017.appspot.com',
     messagingSenderId: '<your-messaging-sender-id>'
   }
 };
