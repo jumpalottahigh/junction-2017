@@ -11,7 +11,9 @@ import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { MatInputModule, MatButtonModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+
 import { SmartStoreService } from './services/smart-store.service';
+import { SocketIoModule, SocketIoConfig, Socket } from 'ng-socket-io';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { SmartStoreService } from './services/smart-store.service';
     AngularFirestoreModule,
     MatInputModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    SocketIoModule.forRoot({url: 'http://balabanovo.westeurope.cloudapp.azure.com'})
   ],
   providers: [
     SmartStoreService

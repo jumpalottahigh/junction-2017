@@ -1,3 +1,4 @@
+import { Socket } from 'ng-socket-io';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 // import { HttpHeaders } from '@angular/common/http/src/headers';
@@ -7,10 +8,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class SmartStoreService {
   private url = 'https://woodcityapiqa.azurewebsites.net/api/v1/GraphQL';
-  constructor(private http: HttpClient) {
-    console.log('lol', http);
-   }
-  // }
+  constructor(private http: HttpClient, private socket: Socket) {}
 
   makeRequest(): Observable<any> {
     let query = {
@@ -37,6 +35,15 @@ export class SmartStoreService {
     // return null;
     return this.http.post(this.url, body, {headers: headers});
   }
+
+  public trackRFID() {
+    return this.socket.fromEvent<{ macAddress: string, orderedRecords: any[] }>('inventory')
+      .filter(x => x.macAddress === '00:16:25:12:16:4F' && x.orderedRecords[0].epc[0] !== '*')
+      .map(x => x.orderedRecords);
+    }
+
+
+
 
 
 }

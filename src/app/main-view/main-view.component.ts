@@ -1,6 +1,7 @@
 import { SmartStoreService } from './../services/smart-store.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { filter } from 'rxjs/operator/filter';
 
 @Component({
   selector: 'app-main-view',
@@ -25,6 +26,10 @@ export class MainViewComponent implements OnInit {
       this.humidData = data.data.building.airquality
       console.log(data);
     });
+
+    this.store.trackRFID()
+    // .filter(x: any => x.epc[0] != '*')
+    .subscribe(x => console.log(x));
   }
 
   public addItem(item: any) {
