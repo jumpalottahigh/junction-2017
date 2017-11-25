@@ -1,5 +1,5 @@
 import { SmartStoreService } from './../services/smart-store.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
@@ -12,6 +12,8 @@ export class MainViewComponent implements OnInit {
   public id = '';
   public name = '';
   public depositeDate = '';
+
+  @ViewChild('fileInput') fileInput;
 
   constructor(private db: AngularFirestore, private store: SmartStoreService) { }
 
@@ -38,5 +40,7 @@ export class MainViewComponent implements OnInit {
 
   public takePhoto() {
     console.log('This takes a photo, stores to Firebase and executes cloud vision using cloud functions');
+    this.fileInput.nativeElement.click();
+    // TODO: upload photo to firebase storage
   }
 }
