@@ -1,4 +1,3 @@
-import { SmartStoreService } from './../services/smart-store.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 
@@ -13,7 +12,7 @@ export class MainViewComponent implements OnInit {
   public name = '';
   public depositeDate = '';
 
-  constructor(private db: AngularFirestore, private store: SmartStoreService) { }
+  constructor(private db: AngularFirestore) { }
 
   ngOnInit() {
     this.db.collection('items').valueChanges()
@@ -21,7 +20,7 @@ export class MainViewComponent implements OnInit {
       console.log(value);
     });
 
-    this.store.makeRequest().subscribe(x => console.log(x));
+    // this.store.makeRequest().subscribe(x => console.log(x));
   }
 
   public addItem(item: any) {
