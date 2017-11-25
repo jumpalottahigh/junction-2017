@@ -2,7 +2,13 @@
 <div *ngIf="oldStuff && oldStuff.length" class="poptext m-t" fxLayout="column" fxLayoutAlign="center center">
   <h2>You have some items in your storage for more then a year!</h2>
   <mat-list fxLayout="column" fxLayoutAlign="start center">
-    <mat-list-item *ngFor="let item of oldStuff">{{item?.name}}</mat-list-item>
+    <mat-list-item *ngFor="let item of oldStuff">{{item?.name}} {{item?.depositDate | date }}</mat-list-item>
+  </mat-list>
+</div>
+<div *ngIf="allItems && allItems.length" fxLayout="column" fxLayoutAlign="center center">
+  <h2>Your all items</h2>
+  <mat-list fxLayout="column" fxLayoutAlign="start center">
+    <mat-list-item *ngFor="let item of allItems">{{item?.name}} {{item?.depositDate | date }}</mat-list-item>
   </mat-list>
 </div>
 <!-- Helvar integration notification -->
