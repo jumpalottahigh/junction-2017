@@ -34,9 +34,11 @@ export class MainViewComponent implements OnInit {
       console.log(data);
     });
 
-    this.store.trackRFID()
-    // .filter(x: any => x.epc[0] != '*')
-    .subscribe(x => console.log(x));
+    // this.store.trackRFID()
+    // // .filter(x: any => x.epc[0] != '*')
+    // .subscribe(x => console.log(x));
+
+    this.store.getMQTTEvents().subscribe(x => console.log(x));
   }
 
   public addItem(item: any) {
