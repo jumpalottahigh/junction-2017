@@ -1,8 +1,13 @@
+<!-- Old stuff notification -->
 <div *ngIf="oldStuff" class="poptext m-t" fxLayout="column" fxLayoutAlign="center center">
   <h2>You have some items in your storage for more then a year!</h2>
   <mat-list fxLayout="column" fxLayoutAlign="start center">
     <mat-list-item *ngFor="let item of oldStuff">{{item?.name}}</mat-list-item>
   </mat-list>
+</div>
+<!-- Helvar integration notification -->
+<div fxLayout="column" fxLayoutAlign="center center">
+  <p>Lights color:</p>
 </div>
 <!-- Storage room state view -->
 <div fxLayout="column" fxLayoutAlign="center center">
