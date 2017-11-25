@@ -15,6 +15,23 @@
   </div>
 </div>
 
-<li *ngFor="let humid of humidData">
-  <ul>{{humid | json}}</ul>
-</li>
+<div>
+  <mat-list *ngFor="let humid of humidData">
+    <mat-list-item>
+      <!-- {{humid | json}} -->
+      <mat-card>
+        <div class="row">
+          <strong>Date:</strong>
+          <span>{{humid.timestamp | date:'medium'}}</span>
+        </div>
+        <div class="row">
+          Humidity: {{humid.humidity | json}}
+          Light: {{humid.light | json}}
+          Motion: {{humid.motion | json}}
+          Temperature: {{humid.temperature | json}}
+        </div>
+      </mat-card>
+    </mat-list-item>
+  </mat-list>   
+</div>
+
