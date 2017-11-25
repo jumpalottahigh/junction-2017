@@ -11,9 +11,11 @@ import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { MatInputModule, MatButtonModule, MatListModule, MatCardModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+
 import { SmartStoreService } from './services/smart-store.service';
 import { OldStuffService } from './services/old-stuff.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SocketIoModule, SocketIoConfig, Socket } from 'ng-socket-io';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FormsModule,
     FlexLayoutModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule,
+    SocketIoModule.forRoot({url: 'http://balabanovo.westeurope.cloudapp.azure.com'})
   ],
   providers: [
     SmartStoreService,

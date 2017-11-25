@@ -1,4 +1,6 @@
+<!-- Add item to storage view -->
 <div>
+  <h2>Add items to storage</h2>
   <mat-form-field>
     <input matInput placeholder="id" [(ngModel)]="id">
   </mat-form-field>
@@ -17,28 +19,25 @@
   </div>
 
   <div class="button-row">
-    <button mat-fab color="primary" (click)="takePhoto()">Primary</button>
+    <button mat-fab color="primary" (click)="takePhoto()">Scan</button>
 
     <input #fileInput class="hidden-input" type="file" accept="image/*" capture="camera" />
   </div>
 </div>
 
+<!-- Storage room state view -->
 <div>
-  <mat-list *ngFor="let humid of humidData">
-    <mat-list-item>
-      <!-- {{humid | json}} -->
-      <mat-card>
-        <div class="row">
-          <strong>Date:</strong>
-          <span>{{humid.timestamp | date:'medium'}}</span>
-        </div>
-        <div class="row">
-          Humidity: {{humid.humidity | json}}
-          Light: {{humid.light | json}}
-          Motion: {{humid.motion | json}}
-          Temperature: {{humid.temperature | json}}
-        </div>
-      </mat-card>
-    </mat-list-item>
-  </mat-list>
+  <h2>Storage room state (last 24 hours)</h2>
+  <mat-card *ngFor="let humid of humidData">
+    <mat-card-title class="row">
+      <strong>Date:</strong>
+      <span>{{humid.timestamp | date:'medium'}}</span>
+    </mat-card-title>
+    <mat-card-content class="row">
+      Humidity: {{humid.humidity | number: '1.1-2'}}
+      Light: {{humid.light | number: '1.1-2'}}
+      Motion: {{humid.motion | number: '1.1-2'}}
+      Temperature: {{humid.temperature | number: '1.1-2'}}
+    </mat-card-content>
+  </mat-card>
 </div>
