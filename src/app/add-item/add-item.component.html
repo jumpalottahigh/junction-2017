@@ -6,10 +6,29 @@
   </mat-form-field>
   <button mat-raised-button (click)="addItem()">Add</button>
 
-  <div class="button-row">
-    <button mat-fab color="primary" (click)="takePhoto()">Scan</button>
+  <div class="m-t">
+    <ol>
+      <li>Scan an item or type it in manually</li>
+      <li>Get notified if you have useless items you can sell or recycle</li>
+      <li>Save the planet!</li>
+    </ol>
+  </div>
 
-    <input #fileInput class="hidden-input" type="file" accept="image/*" capture="camera" (change)="doUpload($event)"/>
+  <div class="m-t">
+    <h4>Coming soon</h4>
+    <ol>
+      <li>Get notified when to sell based on demand in local Facebook marketplace</li>
+      <li>Your lights at home could signal the condition of your storage room:
+        <br> - Red: above average temperature
+        <br> - Blue: above average humidity
+        <br> - Orange: items older than 1 year in storage, time to sell
+      </li>
+    </ol>
+  </div>
+
+  <div>
+    <button mat-fab color="primary" (click)="takePhoto()">Scan</button>
+    <input #fileInput class="hidden-input" type="file" accept="image/*" capture="camera" (change)="doUpload($event)" />
   </div>
 
   <div *ngIf="currentUpload">
