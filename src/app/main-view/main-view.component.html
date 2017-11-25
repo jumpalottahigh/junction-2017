@@ -12,6 +12,8 @@
 
   <div class="button-row">
     <button mat-fab color="primary" (click)="takePhoto()">Primary</button>
+
+    <input #fileInput class="hidden-input" type="file" accept="image/*" capture="camera" />
   </div>
 </div>
 

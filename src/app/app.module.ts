@@ -12,6 +12,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { MatInputModule, MatButtonModule, MatListModule, MatCardModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { SmartStoreService } from './services/smart-store.service';
+import { OldStuffService } from './services/old-stuff.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SmartStoreService } from './services/smart-store.service';
     FormsModule
   ],
   providers: [
-    SmartStoreService
+    SmartStoreService,
+    OldStuffService
   ],
   bootstrap: [AppComponent]
 })
