@@ -9,6 +9,12 @@
     <input matInput placeholder="timestamp" [(ngModel)]="depositeDate">
   </mat-form-field>
   <button mat-raised-button (click)="addItem()">Add items</button>
+  <div *ngIf="oldStuff" class="poptext" fxLayout="column" fxLayoutAlign="center center">
+    <h2>You have some items that are in your storage for more then a year!</h2>
+    <div *ngFor="let item of oldStuff">
+      {{item?.name}}
+    </div>
+  </div>
 
   <div class="button-row">
     <button mat-fab color="primary" (click)="takePhoto()">Primary</button>

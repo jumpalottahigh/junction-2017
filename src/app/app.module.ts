@@ -13,6 +13,7 @@ import { MatInputModule, MatButtonModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { SmartStoreService } from './services/smart-store.service';
 import { OldStuffService } from './services/old-stuff.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { OldStuffService } from './services/old-stuff.service';
     AngularFirestoreModule,
     MatInputModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    FlexLayoutModule
   ],
   providers: [
     SmartStoreService,

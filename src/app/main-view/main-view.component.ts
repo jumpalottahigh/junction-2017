@@ -14,6 +14,8 @@ export class MainViewComponent implements OnInit {
   public name = '';
   public depositeDate = '';
 
+  public oldStuff = null;
+
   constructor(private db: AngularFirestore, private store: SmartStoreService, private old: OldStuffService) { }
 
   @ViewChild('fileInput') fileInput;
@@ -21,7 +23,9 @@ export class MainViewComponent implements OnInit {
 
   ngOnInit() {
 
-    this.old.check();
+    this.old.check().subscribe(oldStuff => {
+      this.oldStuff = oldStuff;
+    });
 
     this.db.collection('items').valueChanges()
     .subscribe(value => {
