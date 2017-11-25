@@ -1,6 +1,7 @@
 import { SmartStoreService } from './../services/smart-store.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { OldStuffService } from '../services/old-stuff.service';
 
 @Component({
   selector: 'app-main-view',
@@ -8,21 +9,24 @@ import { AngularFirestore } from 'angularfire2/firestore';
   styleUrls: ['./main-view.component.scss']
 })
 export class MainViewComponent implements OnInit {
-  public humidData = null; 
+  public humidData = null;
   public id = '';
   public name = '';
   public depositeDate = '';
 
-  constructor(private db: AngularFirestore, private store: SmartStoreService) { }
+  constructor(private db: AngularFirestore, private store: SmartStoreService, private old: OldStuffService) { }
 
   ngOnInit() {
+
+    this.old.check();
+
     this.db.collection('items').valueChanges()
     .subscribe(value => {
       console.log(value);
     });
 
     this.store.makeRequest().subscribe((data) => {
-      this.humidData = data.data.building.airquality
+      this.humidData = data.data.building.airquality;
       console.log(data);
     });
   }
