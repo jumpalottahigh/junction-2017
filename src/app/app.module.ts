@@ -20,11 +20,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SocketIoModule, SocketIoConfig, Socket } from 'ng-socket-io';
 import { RouterModule, Routes } from '@angular/router';
 import { AddItemComponent } from './add-item/add-item.component';
+import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { MatTabsModule } from '@angular/material/tabs';
 
 const appRoutes: Routes = [
   { path: '', component: MainViewComponent },
   { path: 'add', component: AddItemComponent },
+  { path: 'coming-soon', component: ComingSoonComponent },
   { path: '**', component: MainViewComponent }
 ];
 
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     MainViewComponent,
-    AddItemComponent
+    AddItemComponent,
+    ComingSoonComponent
   ],
   imports: [
     BrowserModule,

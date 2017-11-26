@@ -6,10 +6,17 @@
   </mat-form-field>
   <button mat-raised-button (click)="addItem()">Add</button>
 
-  <div class="button-row">
-    <button mat-fab color="primary" (click)="takePhoto()">Scan</button>
+  <div class="m-t">
+    <ol>
+      <li>Scan an item or type it in manually</li>
+      <li>Get notified if you have useless items you can sell or recycle</li>
+      <li>Save the planet!</li>
+    </ol>
+  </div>
 
-    <input #fileInput class="hidden-input" type="file" accept="image/*" capture="camera" (change)="doUpload($event)"/>
+  <div>
+    <button mat-fab color="primary" (click)="takePhoto()">Scan</button>
+    <input #fileInput class="hidden-input" type="file" accept="image/*" capture="camera" (change)="doUpload($event)" />
   </div>
 
   <div *ngIf="currentUpload">
