@@ -2,15 +2,19 @@
 <div *ngIf="oldStuff && oldStuff.length" class="poptext m-t" fxLayout="column" fxLayoutAlign="center center">
   <h2>You have some items in your storage for more then a year!</h2>
   <mat-list fxLayout="column" fxLayoutAlign="start center">
-    <mat-list-item *ngFor="let item of oldStuff">{{item?.name}} {{item?.depositDate | date }}</mat-list-item>
+    <mat-list-item *ngFor="let item of oldStuff" class="storage-item">
+      <div fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="start center" [ngStyle]="{'height':'70px'}">
+        <div class="itemImage" *ngIf="item?.image" [ngStyle]="{'background-image': 'url(' + item.image + ')'}"></div><h4>{{item?.name}}</h4><span>{{item?.depositDate | date }}</span>
+      </div>
+    </mat-list-item>
   </mat-list>
 </div>
 <div *ngIf="allItems && allItems.length" fxLayout="column" fxLayoutAlign="center center">
   <h2>All checked in items</h2>
   <mat-list fxLayout="column" fxLayoutAlign="start center">
-    <mat-list-item *ngFor="let item of allItems">
-      <div fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="start center">
-        <h4>{{item?.name}}</h4><span>{{item?.depositDate | date }}</span>
+    <mat-list-item *ngFor="let item of allItems" class="storage-item">
+      <div fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="start center" [ngStyle]="{'height':'70px'}">
+        <div class="itemImage" *ngIf="item?.image" [ngStyle]="{'background-image': 'url(' + item.image + ')'}"></div><h4>{{item?.name}}</h4><span>{{item?.depositDate | date }}</span>
       </div>
     </mat-list-item>
   </mat-list>

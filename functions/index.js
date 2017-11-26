@@ -18,24 +18,30 @@ exports.handleImageUpload = functions.database.ref('/uploads/{uploadKey}')
         const timestamp = new Date().getTime();
         const data = event.data.val();
 
-
-        request({
-            url: visionUrl,
-            method: 'POST',
-            json: { url: data.url }
-        }, (error, response, body) => {
-            let name = 'default';
-            console.log(error, response, body)
-            if (body && body.categories && body.categories.length) {
-                name = body.categories[0].name;
-            }
-
-            firestore.collection('items').add({
-                depositDate: timestamp,
-                name: name
-            }); //  TODO: GET NAME GOOGLE VISION
-            
-            console.log('image uploaded url:', data.url, name);
+        firestore.collection('items').add({
+            depositDate: timestamp,
+            name: 'Recognizing...',
+            image: data.url
+        })
+        .then(addedItem => {
+            // NOTE: The vision needs paid account to work!
+            request({
+                url: visionUrl,
+                method: 'POST',
+                json: { url: data.url }
+            }, (error, response, body) => {
+                let name = 'default';
+                console.log(error, response, body);
+                if (body && body.categories && body.categories.length) {
+                    name = body.categories[0].name;
+                }
+    
+                firestore.collection('items').doc(addedItem.id).update({
+                    name: name
+                });
+                
+                console.log('image uploaded url:', data.url, name);
+            });
         });
     });
 

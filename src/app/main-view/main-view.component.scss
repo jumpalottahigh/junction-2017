@@ -4,3 +4,13 @@
 .cards {
   justify-content: space-between;
 }
+.itemImage {
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+mat-list-item.storage-item {
+  height: 70px;
+}

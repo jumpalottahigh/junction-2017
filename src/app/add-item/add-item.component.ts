@@ -71,6 +71,7 @@ export class AddItemComponent implements OnInit {
           setTimeout(() => {
             this.fileInput.nativeElement.value = '';
             this.currentUpload = null;
+            this.selectedFiles = null;
           }, 2000);
         },
         (error) => {

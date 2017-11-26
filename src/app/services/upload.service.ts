@@ -35,15 +35,16 @@ export class UploadService {
   // Executes the file uploading to firebase https://firebase.google.com/docs/storage/web/upload-files
   pushUpload(upload: Upload): Observable<any> {
     return new Observable((observer) => {
-      console.log('do the upload!', upload);
+      const fileName = Math.random() + upload.file.name;
       const storageRef = firebase.storage().ref();
-      const uploadTask = storageRef.child(`${this.basePath}/${upload.file.name}`).put(upload.file);
+      const uploadTask = storageRef.child(`${this.basePath}/${fileName}`).put(upload.file);
   
       uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
         (snapshot: firebase.storage.UploadTaskSnapshot) =>  {
           // upload in progress
           const snap = snapshot;
-          upload.progress = (snap.bytesTransferred / snap.totalBytes) * 100
+          const progress = (snap.bytesTransferred / snap.totalBytes) * 100;
+          upload.progress = Math.round(progress * 100) / 100;
         },
         (error) => {
           // upload failed
