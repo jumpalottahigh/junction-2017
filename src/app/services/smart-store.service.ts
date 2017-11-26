@@ -45,7 +45,7 @@ export class SmartStoreService {
     });
 
     this.client.on('message', (topic, message) => {
-      message = message.toStrig();
+      message = message.toString();
       this.mqttEvent.next({topic, message});
 
       this.mqttArr = [...this.mqttArr, {topic, message}];
