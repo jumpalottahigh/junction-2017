@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFirestore } from 'angularfire2/firestore';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 @Injectable()
 export class OldStuffService {
   private items;
 
-  constructor(private db: AngularFirestore) {
+  constructor(private db: AngularFirestore, private http: HttpClient) {
     this.items = this.db.collection('items').valueChanges();
   }
 
@@ -22,11 +24,15 @@ export class OldStuffService {
     // device = 0, 3, 8
     // level = 225
     // x = 1, y = 0 - red
-    // https://private-anon-280c1bb1d3-junctionhelvar2017.apiary-mock.com/v1/command?device=3&level=155&colour_x=1&colour_y=0
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json');
+    headers.set('Accept', 'application/json');
 
-    // Headers:
-    // 'Content-Type', 'application/json'
-    // 'Accept', 'application/json'
+    this.http.get('https://private-anon-280c1bb1d3-junctionhelvar2017.apiary-mock.com/v1/command?device=8&level=255&colour_x=41&colour_y=21', {headers: headers})
+    .subscribe(resp => {
+      console.log('HERE', resp);
+    });
+
 
     return this.items.map((items) => {
       return items.filter(item => {
