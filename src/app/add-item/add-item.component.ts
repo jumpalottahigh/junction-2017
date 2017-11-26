@@ -15,7 +15,7 @@ export class AddItemComponent implements OnInit {
   public humidData = null;
   public id = '';
   public name = '';
-  public depositeDate = '';
+  public depositDate = '';
   public selectedFiles: FileList | null;
   public currentUpload: Upload;
 
@@ -48,7 +48,7 @@ export class AddItemComponent implements OnInit {
     {
       id: this.id,
       name: this.name,
-      depositeDate: this.depositeDate
+      depositDate: this.depositDate || new Date().getTime()
     });
 
     this.name = null;
