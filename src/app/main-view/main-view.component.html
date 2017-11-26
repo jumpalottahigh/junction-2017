@@ -8,7 +8,11 @@
 <div *ngIf="allItems && allItems.length" fxLayout="column" fxLayoutAlign="center center">
   <h2>All checked in items</h2>
   <mat-list fxLayout="column" fxLayoutAlign="start center">
-    <mat-list-item *ngFor="let item of allItems">{{item?.name}} {{item?.depositDate | date }}</mat-list-item>
+    <mat-list-item *ngFor="let item of allItems">
+      <div fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="start center">
+        <h4>{{item?.name}}</h4><span>{{item?.depositDate | date }}</span>
+      </div>
+    </mat-list-item>
   </mat-list>
 </div>
 <!-- Helvar integration notification -->
