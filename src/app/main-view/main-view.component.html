@@ -19,13 +19,26 @@
 <div fxLayout="column" fxLayoutAlign="center center">
   <h2>Storage room state (last 24 hours)</h2>
   <mat-card *ngFor="let humid of humidData">
-    <mat-card-title class="row">
-      <strong>Date:</strong>
-      <span>{{humid.timestamp | date:'medium'}}</span>
-    </mat-card-title>
-    <mat-card-content class="row">
-      Humidity: {{humid.humidity | number: '1.1-2'}} Light: {{humid.light | number: '1.1-2'}} Motion: {{humid.motion | number:
-      '1.1-2'}} Temperature: {{humid.temperature | number: '1.1-2'}}
+    <mat-card-content>
+      <h3>
+        <strong>Date:</strong>
+        <span>{{humid.timestamp | date:'medium'}}</span>
+      </h3>
+      <div fxLayout="row" class="cards">
+        <div>
+            Temperature: {{humid.temperature | number: '1.1-2'}}
+        </div>
+        <div>
+            Humidity: {{humid.humidity | number: '1.1-2'}}
+        </div>
+        <div>
+            Light: {{humid.light | number: '1.1-2'}}
+        </div>
+        <div>
+            Motion: {{humid.motion | number:
+              '1.1-2'}}
+        </div>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>
